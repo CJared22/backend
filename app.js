@@ -1,16 +1,17 @@
 import express from "express";
-import bookRoutes from './routes/bookRoute.js'; 
+import bookRoutes from './routes/bookRoute.js';
+import studentRoute from './routes/studentRoute.js';
 
-//create express app
 const app = express();
 
 app.use('/book', bookRoutes);
+app.use('/student', studentRoute);
 
 try {
-    const port = 3000; //Define port variable here for safety
+    const port =3000;
     app.listen(port, () => {
-        console.log(`listening to port ${port}...`);
+        console.log(`listening to port ${port}...`);        
     });
-} catch(e) {
+} catch (e) {
     console.log(e);
 }
