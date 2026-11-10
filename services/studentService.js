@@ -6,7 +6,7 @@ export const fetchAllStudent = async() =>{
 }
 
 export const createStudent = async(student) => {
-    const studentId = await studentModel.insert(student);
+    const studentId = await studentModel.create(student);
     
     return studentId;
 }

@@ -6,9 +6,9 @@ export const fetchAllStudent = async (req, res) =>{
 }
 
 export const createStudent = async (req, res) =>{
-    console.log(req);
-    const {name, course} = req.body;
-    const student = {name, course};
+    console.log(req.body);
+    const {name,age} = req.body;
+    const student = {name, age};
     
     try {
         const studentId = await studentService.createStudent(student);
@@ -26,10 +26,10 @@ export const createStudent = async (req, res) =>{
       
     }
 
-export const editStudent = async (req, res) =>{
-    const {name, course} = req.body;
+export const updateStudent = async (req, res) =>{
+    const {name, age} = req.body;
     const { id } = req.params;
-    const student = {id: parseInt(id), name, course};
+    const student = {id: parseInt(id), name, age};
 
     try{
         const updatedStudent = await studentService.updateStudent(student);
@@ -45,7 +45,7 @@ export const editStudent = async (req, res) =>{
     } 
 }
 
-export const deletedStudent = async (req, res) =>{
+export const deleteStudent = async (req, res) =>{
     const { id } = req.params;
 
     try{

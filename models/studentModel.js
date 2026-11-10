@@ -6,17 +6,18 @@ export const fetch = async () =>{
 
 };
 
-export const insert = async (student)=>{
-    const[result] = await pool.query("INSERT IN TO student(name, course)VALUES(?,?)",[student.name, student.course]);
+export const create = async (student)=>{
+    const[result] = await pool.query
+    ("INSERT INTO student(name, age)VALUES(?,?)",[student.name, student.age]);
     
     return result.insertId;
     
 }
 
-export const update = async  (student) => {
+export const update = async (student) => {
     const [result] = await pool.query (
-        "UPDATE student SET name= ?, author= ? WHERE id= ? ",
-        [student.name, student.course]
+        "UPDATE student SET name= ?, age= ? WHERE id= ? ",
+        [student.name, student.age, student.id]
     );
     return result.affectedRows;
 }
