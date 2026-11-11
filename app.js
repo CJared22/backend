@@ -1,11 +1,18 @@
-
 import express from "express";
+import cors from 'cors';
+
 import bookRoutes from './routes/bookRoute.js';
 import studentRoute from './routes/studentRoute.js';
+
+let corsOptions = {
+    origin: 'http://localhost:5173',
+};
+
 
 const app = express();
 
 // IMPORTANT: Middleware
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

@@ -7,8 +7,7 @@ export const fetch = async () =>{
 };
 
 export const create = async (student)=>{
-    const[result] = await pool.query
-    ("INSERT INTO student(name, age)VALUES(?,?)",[student.name, student.age]);
+    const[result] = await pool.query("INSERT INTO student(name, age)VALUES(?,?)",[student.name, student.age]);
     
     return result.insertId;
     
