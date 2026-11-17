@@ -1,29 +1,63 @@
+
 import pool from '../config/db.js';
 
-//Retrieve
+// Retrieve all books
 export const fetch = async () => {
     const [rows] = await pool.query("SELECT * FROM book");
     return rows;
 };
 
-export const insert = async (book)=>{
-    const[result] = await pool.query("INSERT IN TO book(name, author)VALUES(?,?)",[book.name, book.author]);
-    
-    return result.insertId;
-    
-}
 
-export const update = async  (book) => {
-    const [result] = await pool.query (
-        "UPDATE student SET name= ?, author= ? WHERE id= ? ",
+// Find book by name and author
+export const findBookByNameAndAuthor = async (name, author) => {
+    const [rows] = await pool.query(
+        "SELECT * FROM book WHERE name = ? AND author = ?",
+        [name, author]
+    );
+
+    return rows;
+};
+
+
+// Find book by ID
+export const findBookById = async (id) => {
+    const [rows] = await pool.query(
+        "SELECT * FROM book WHERE id = ?",
+        [id]
+    );
+
+    return rows;
+};
+
+
+// Insert
+export const insert = async (book) => {
+    const [result] = await pool.query(
+        "INSERT INTO book(name, author) VALUES (?, ?)",
         [book.name, book.author]
     );
-    return result.affectedRows;
-}
 
-export const remove = async (id) => {
-    const [result] = await pool.query (
-        "DELETE FROM book WHERE id= ? ", [id]
+    return result.insertId;
+};
+
+
+// Update
+export const update = async (book) => {
+    const [result] = await pool.query(
+        "UPDATE book SET name = ?, author = ? WHERE id = ?",
+        [book.name, book.author, book.id]
     );
+
     return result.affectedRows;
-}
+};
+
+
+// Delete
+export const remove = async (id) => {
+    const [result] = await pool.query(
+        "DELETE FROM book WHERE id = ?",
+        [id]
+    );
+
+    return result.affectedRows;
+};
