@@ -3,6 +3,7 @@ import cors from 'cors';
 
 import bookRoutes from './routes/bookRoute.js';
 import studentRoute from './routes/studentRoute.js';
+import userRoute from './routes/userRoute.js';
 
 let corsOptions = {
     origin: 'http://localhost:5173',
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use('/book', bookRoutes);
 app.use('/student', studentRoute);
+app.use('/user', userRoute);
 
 const port = 3000;
 
